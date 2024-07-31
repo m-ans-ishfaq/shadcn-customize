@@ -51,6 +51,7 @@ import { ToggleGroupDemo } from "./demo/toggle-group";
 import { TooltipDemo } from "./demo/tooltip";
 import { Badge } from "@/components/ui/badge";
 import { ReactNode, useState } from "react";
+import { DataTableDemo } from "./demo/data-table";
 
 const components = [
   { name: 'Accordion',         component: AccordionDemo         },
@@ -70,6 +71,7 @@ const components = [
   { name: 'Combobox',          component: ComboboxDemo          },
   { name: 'Command',           component: CommandDemo           },
   { name: 'Context Menu',      component: ContextMenuDemo       },
+  { name: 'Data Table',        component: DataTableDemo         },
   { name: 'Date Picker',       component: DatePickerDemo        },
   { name: 'Dialog',            component: DialogDemo            },
   { name: 'Drawer',            component: DrawerDemo            },
