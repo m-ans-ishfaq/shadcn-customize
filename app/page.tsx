@@ -1,112 +1,158 @@
-import Image from "next/image";
+"use client";
+
+import { ToggleDarkThemeButton } from "@/components/custom/toggle-dark-theme-button";
+import { AccordionDemo } from "./demo/accordion";
+import { AlertDemo } from "./demo/alert";
+import { AlertDialogDemo } from "./demo/alert-dialog";
+import { AspectRatioDemo } from "./demo/aspect-ratio";
+import { AvatarDemo } from "./demo/avatar";
+import { BadgeDemo } from "./demo/badge";
+import { BreadcrumbDemo } from "./demo/bread-crumb";
+import { ButtonDemo } from "./demo/button";
+import { CalendarDemo } from "./demo/calendar";
+import { CardWithForm } from "./demo/card";
+import { CarouselDemo } from "./demo/carousel";
+import { ChartDemo } from "./demo/chart";
+import { CheckboxDemo } from "./demo/checkbox";
+import { CollapsibleDemo } from "./demo/collapsible";
+import { ComboboxDemo } from "./demo/combobox";
+import { CommandDemo } from "./demo/command";
+import { ContextMenuDemo } from "./demo/context-menu";
+import { DatePickerDemo } from "./demo/date-picker";
+import { DialogDemo } from "./demo/dialog";
+import { DrawerDemo } from "./demo/drawer";
+import { DropdownMenuDemo } from "./demo/dropdown-menu";
+import { InputForm } from "./demo/form";
+import { HoverCardDemo } from "./demo/hover-card";
+import { InputDemo } from "./demo/input";
+import { InputOTPDemo } from "./demo/input-otp";
+import { LabelDemo } from "./demo/label";
+import { MenubarDemo } from "./demo/menubar";
+import { NavigationMenuDemo } from "./demo/navigation-menu";
+import { PaginationDemo } from "./demo/pagination-demo";
+import { PopoverDemo } from "./demo/popover";
+import { ProgressDemo } from "./demo/progress";
+import { RadioGroupDemo } from "./demo/radio-group";
+import { ResizableDemo } from "./demo/resizable";
+import { ScrollAreaDemo } from "./demo/scroll-area";
+import { SelectDemo } from "./demo/select";
+import { SeparatorDemo } from "./demo/separator";
+import { SheetDemo } from "./demo/sheet";
+import { SkeletonDemo } from "./demo/skeleton";
+import { SliderDemo } from "./demo/slider";
+import { SonnerDemo } from "./demo/sonner";
+import { SwitchDemo } from "./demo/switch";
+import { TableDemo } from "./demo/table";
+import { TabsDemo } from "./demo/tabs";
+import { TextareaDemo } from "./demo/textarea";
+import { ToastDemo } from "./demo/toast";
+import { ToggleDemo } from "./demo/toggle";
+import { ToggleGroupDemo } from "./demo/toggle-group";
+import { TooltipDemo } from "./demo/tooltip";
+import { Badge } from "@/components/ui/badge";
+import { ReactNode, useState } from "react";
+
+const components = [
+  { name: 'Accordion',         component: AccordionDemo         },
+  { name: 'Alert',             component: AlertDemo             },
+  { name: 'Alert Dialog',      component: AlertDialogDemo       },
+  { name: 'Aspect Ratio',      component: AspectRatioDemo       },
+  { name: 'Avatar',            component: AvatarDemo            },
+  { name: 'Badge',             component: BadgeDemo             },
+  { name: 'Breadcrumb',        component: BreadcrumbDemo        },
+  { name: 'Button',            component: ButtonDemo            },
+  { name: 'Calendar',          component: CalendarDemo          },
+  { name: 'Card With Form',    component: CardWithForm          },
+  { name: 'Carousel',          component: CarouselDemo          },
+  { name: 'Chart',             component: ChartDemo             },
+  { name: 'Checkbox',          component: CheckboxDemo          },
+  { name: 'Collapsible',       component: CollapsibleDemo       },
+  { name: 'Combobox',          component: ComboboxDemo          },
+  { name: 'Command',           component: CommandDemo           },
+  { name: 'Context Menu',      component: ContextMenuDemo       },
+  { name: 'Date Picker',       component: DatePickerDemo        },
+  { name: 'Dialog',            component: DialogDemo            },
+  { name: 'Drawer',            component: DrawerDemo            },
+  { name: 'Dropdown Menu',     component: DropdownMenuDemo      },
+  { name: 'Form',              component: InputForm             },
+  { name: 'Hover Card',        component: HoverCardDemo         },
+  { name: 'Input',             component: InputDemo             },
+  { name: 'Input OTP',         component: InputOTPDemo          },
+  { name: 'Label',             component: LabelDemo             },
+  { name: 'Menubar',           component: MenubarDemo           },
+  { name: 'Navigation Menu',   component: NavigationMenuDemo    },
+  { name: 'Pagination',        component: PaginationDemo        },
+  { name: 'Popover',           component: PopoverDemo           },
+  { name: 'Progress',          component: ProgressDemo          },
+  { name: 'Radio Group',       component: RadioGroupDemo        },
+  { name: 'Resizable',         component: ResizableDemo         },
+  { name: 'Scroll Area',       component: ScrollAreaDemo        },
+  { name: 'Select',            component: SelectDemo            },
+  { name: 'Separator',         component: SeparatorDemo         },
+  { name: 'Sheet',             component: SheetDemo             },
+  { name: 'Skeleton',          component: SkeletonDemo          },
+  { name: 'Slider',            component: SliderDemo            },
+  { name: 'Sonner',            component: SonnerDemo            },
+  { name: 'Switch',            component: SwitchDemo            },
+  { name: 'Table',             component: TableDemo             },
+  { name: 'Tabs',              component: TabsDemo              },
+  { name: 'Textarea',          component: TextareaDemo          },
+  { name: 'Toast',             component: ToastDemo             },
+  { name: 'Toggle',            component: ToggleDemo            },
+  { name: 'Toggle Group',      component: ToggleGroupDemo       },
+  { name: 'Tooltip',           component: TooltipDemo           }
+];
+
+function ComponentContainer({ title, children }: { title: string, children: ReactNode }) {
+  return (
+    <div className="space-y-4">
+      <h2 className="font-semibold">{title}</h2>
+      <div className="">{children}</div>
+    </div>
+  );
+}
 
 export default function Home() {
+  const [selectedComponents, setSelectedComponents] = useState(new Set());
+
+  const toggleSelection = (name: string) => {
+    const newSelection = new Set(selectedComponents);
+    if (newSelection.has(name)) {
+      newSelection.delete(name);
+    } else {
+      newSelection.add(name);
+    }
+    setSelectedComponents(newSelection);
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className={`flex px-4 w-full justify-center min-h-screen h-full bg-white text-black dark:bg-zinc-900 dark:text-white space-y-4`}>
+      <div className="container px-0 space-y-8">
+        <header className="h-16 border-b flex justify-between items-center px-4">
+          <h1 className="font-semibold tracking-widest">SHADCN COMPONENTS</h1>
+          <ToggleDarkThemeButton />
+        </header>
+        <div className="flex flex-wrap gap-4">
+          {components.map(({ name }) => (
+            <Badge
+              key={name}
+              variant={selectedComponents.has(name) ? 'default' : 'secondary'}
+              onClick={() => toggleSelection(name)}
+              className="cursor-pointer"
+            >
+              {name}
+            </Badge>
+          ))}
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        <div className="space-y-4">
+          {components.map(({ name, component: Component }) => (
+            selectedComponents.has(name) && (
+              <ComponentContainer key={name} title={name}>
+                <Component />
+              </ComponentContainer>
+            )
+          ))}
+        </div>
       </div>
     </main>
   );
