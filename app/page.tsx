@@ -52,6 +52,7 @@ import { TooltipDemo } from "./demo/tooltip";
 import { Badge } from "@/components/ui/badge";
 import { ReactNode, useState } from "react";
 import { DataTableDemo } from "./demo/data-table";
+import { ImageUploadDemo } from "./demo/dropzone";
 
 const components = [
   { name: 'Accordion',         component: AccordionDemo         },
@@ -78,6 +79,7 @@ const components = [
   { name: 'Dropdown Menu',     component: DropdownMenuDemo      },
   { name: 'Form',              component: InputForm             },
   { name: 'Hover Card',        component: HoverCardDemo         },
+  { name: 'Image Upload',      component: ImageUploadDemo       },
   { name: 'Input',             component: InputDemo             },
   { name: 'Input OTP',         component: InputOTPDemo          },
   { name: 'Label',             component: LabelDemo             },
@@ -102,7 +104,7 @@ const components = [
   { name: 'Toast',             component: ToastDemo             },
   { name: 'Toggle',            component: ToggleDemo            },
   { name: 'Toggle Group',      component: ToggleGroupDemo       },
-  { name: 'Tooltip',           component: TooltipDemo           }
+  { name: 'Tooltip',           component: TooltipDemo           },
 ];
 
 function ComponentContainer({ title, children }: { title: string, children: ReactNode }) {
